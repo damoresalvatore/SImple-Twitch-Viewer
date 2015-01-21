@@ -1,0 +1,47 @@
+<link rel="stylesheet" type="text/css" href="website.css">
+<script type="text/javascript" src="website.js"></script>
+<script src="jquery-2.1.1.js"></script>
+<script type="text/javascript">
+	launch();
+</script>
+<div id="header">
+    <span id="mousestatus"></span>
+    <span id="clickevent"></span>
+</div>
+
+<!-- Contains the dragbar, located on the right side -->
+<div id="sidebar">
+ 	<div id="dragbar"></div>
+ 	<!-- Embeded stream -->
+    <iframe id="stream" src="http://www.twitch.tv/nathanias/embed" frameborder="0" scrolling="no" height=100% width=795px>
+    </iframe>
+    
+</div>
+<div id="main">
+    <div id ="chat">
+    	<form id="channel">
+    		<input type="text" name="newchannel" id="newchannel" placeholder="Enter a channel">
+    		<script>
+				document.getElementById('newchannel').onkeypress = function(e){
+				    if (!e) e = window.event;
+				    //Input on the enter key
+				    if (e.keyCode == '13'){
+				  
+				      // Replace the channel source with what we want
+				      $('iframe#stream').attr('src',"http://www.twitch.tv/" + document.getElementById("newchannel").value + "/embed"); 
+				      $('iframe#actChat').attr('src',"http://www.twitch.tv/" + document.getElementById("newchannel").value + "/chat?popout="); 
+
+				      // This is actually important, it blocks the regular submission on the text input
+				      return false;
+				    }
+				  }
+				</script>
+    	</form>
+	
+    	
+    	<!-- Embeded chat, to be replaced by my own in the future -->
+    	
+			<iframe src="http://www.twitch.tv/nathanias/chat?popout=" frameborder="0" scrolling="no" height=95% width=100% id="actChat"></iframe>
+		
+	</div>
+</div>
